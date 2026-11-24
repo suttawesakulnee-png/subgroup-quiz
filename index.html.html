@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบทดสอบ Subgroup Meaning (15 ข้อ)</title>
+<style>
+  :root {
+    --primary: #0082c3;
+    --primary-dark: #006699;
+    --primary-light: #e6f4fb;
+    --accent: #368727;
+    --bg: #f4f7fa;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --danger: #dc2626;
+    --danger-bg: #fee2e2;
+    --warn: #d97706;
+    --warn-bg: #fef3c7;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Sarabun", "Noto Sans Thai", "Tahoma", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 16px;
+  }
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-badge {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+  }
+  .brand h1 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:disabled { background: #94a3b8; cursor: not-allowed; }
+  .btn-outline {
+    background: #fff;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+  .btn-outline:hover { background: var(--primary-light); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: #f1f5f9; color: var(--text); }
+  .btn-sm { padding: 7px 13px; font-size: 13.5px; }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 26px;
+    border: 1px solid var(--border);
+  }
+
+  /* Start Screen */
+  .hero-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .hero-sub {
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .info-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .info-box .num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+  .info-box .lbl {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .input-text {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+  }
+  .input-text:focus { border-color: var(--primary); }
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+    font-size: 14.5px;
+  }
+  .toggle-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+  }
+
+  /* Quiz Screen */
+  .progress-wrap {
+    margin-bottom: 18px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 9px;
+    background: #e2e8f0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .q-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 99px;
+    margin-bottom: 12px;
+  }
+  .q-text {
+    font-size: 18.5px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 13px 15px;
+    font-size: 15.5px;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: #f8fbff;
+  }
+  .option-btn:disabled { cursor: default; }
+  .opt-letter {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .option-btn.correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+  .option-btn.correct .opt-letter {
+    background: var(--success);
+    color: #fff;
+  }
+  .option-btn.wrong {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+  }
+  .option-btn.wrong .opt-letter {
+    background: var(--danger);
+    color: #fff;
+  }
+  .hint-box {
+    background: var(--warn-bg);
+    border: 1px solid #fcd34d;
+    color: #92400e;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .feedback-box {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 14.5px;
+  }
+  .feedback-box.ok {
+    background: var(--success-bg);
+    border: 1px solid #86efac;
+    color: #14532d;
+  }
+  .feedback-box.err {
+    background: var(--danger-bg);
+    border: 1px solid #fca5a5;
+    color: #7f1d1d;
+  }
+  .feedback-title {
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  /* Result Screen */
+  .score-banner {
+    text-align: center;
+    padding: 20px 10px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .score-circle {
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    border: 6px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .score-circle .big {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.1;
+  }
+  .score-circle .small {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .review-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: #fff;
+  }
+  .review-item.r-ok { border-left: 5px solid var(--success); }
+  .review-item.r-err { border-left: 5px solid var(--danger); }
+  .review-q { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+  .review-ans { font-size: 14px; margin-bottom: 4px; }
+  .review-exp { font-size: 13.5px; color: var(--muted); }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1000;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 22px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  }
+  .modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .modal-head h2 {
+    font-size: 19px;
+    color: var(--accent);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  th {
+    background: #3346b0;
+    color: #fff;
+    padding: 9px 8px;
+    text-align: center;
+    border: 1px solid #cbd5e1;
+  }
+  td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #cbd5e1;
+    font-weight: 600;
+  }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .note-box {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: #0c4a6e;
+  }
+  .note-box ul { margin-left: 18px; margin-top: 4px; }
+  .hidden { display: none !important; }
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 2000;
+  }
+  .toast.show { opacity: 1; }
+  @media (max-width: 520px) {
+    .card { padding: 18px; }
+    .q-text { font-size: 16.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <span class="brand-badge">SUBGROUP QUIZ</span>
+      <h1>แบบทดสอบ Subgroup Meaning</h1>
+    </div>
+    <button class="btn btn-outline btn-sm" id="openRefBtn">📊 ตารางอ้างอิง</button>
+  </header>
+
+  <!-- Start Screen -->
+  <section id="startScreen" class="card">
+    <h2 class="hero-title">วัดความเข้าใจการจัดกลุ่ม Subgroup (ฉบับอัปเดต)</h2>
+    <p class="hero-sub">
+      ครอบคลุมการแยกแยะกลุ่มที่คล้ายกัน (MONO / MBUL / MCEL), กลุ่มจำกัด 10 ชิ้น (STAN / STBU / BULK / BCEL), กลุ่มไม่จำกัดชิ้น (OTHE / OCEL) และความหมายของค่า n/a ระหว่างกลุ่มพิเศษกับกลุ่มน้ำหนักเกิน
+    </p>
+    <div class="info-grid">
+      <div class="info-box"><div class="num">15</div><div class="lbl">จำนวนข้อสอบ</div></div>
+      <div class="info-box"><div class="num">4 ตัวเลือก</div><div class="lbl">สุ่มลำดับอัตโนมัติ</div></div>
+      <div class="info-box"><div class="num">เฉลยทันที</div><div class="lbl">พร้อมคำอธิบายเหตุผล</div></div>
+    </div>
+    <div class="form-group">
+      <label for="userName">ชื่อผู้ทำแบบทดสอบ (ไม่บังคับ — ใช้แสดงตอนคัดลอกผลคะแนน)</label>
+      <input type="text" id="userName" class="input-text" placeholder="เช่น สมชาย / ทีม Packing">
+    </div>
+    <div class="toggle-row">
+      <span>สลับลำดับข้อคำถามทุกครั้งที่เริ่มทำ</span>
+      <input type="checkbox" id="shuffleToggle" checked>
+    </div>
+    <button class="btn btn-primary" id="startBtn" style="width:100%; padding:13px;">เริ่มทำแบบทดสอบ</button>
+  </section>
+
+  <!-- Quiz Screen -->
+  <section id="quizScreen" class="card hidden">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="qCounter">ข้อที่ 1 / 15</span>
+        <span id="scoreLive">คะแนนสะสม: 0</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <span class="q-tag" id="qCategory">หมวดหมู่</span>
+    <div class="q-text" id="qText"></div>
+    <div class="options" id="optionsBox"></div>
+
+    <div class="hint-box hidden" id="hintBox"></div>
+    <div class="feedback-box hidden" id="feedbackBox">
+      <div class="feedback-title" id="feedbackTitle"></div>
+      <div id="feedbackReason"></div>
+    </div>
+
+    <div class="quiz-footer">
+      <button class="btn btn-ghost btn-sm" id="hintBtn">💡 ดูคำใบ้</button>
+      <button class="btn btn-primary hidden" id="nextBtn">ข้อถัดไป →</button>
+    </div>
+  </section>
+
+  <!-- Result Screen -->
+  <section id="resultScreen" class="card hidden">
+    <div class="score-banner">
+      <div class="score-circle">
+        <div class="big" id="finalScore">0/15</div>
+        <div class="small" id="finalPct">0%</div>
+      </div>
+      <h2 id="resultHeading" style="font-size:21px; margin-bottom:4px;">สรุปผลคะแนน</h2>
+      <p id="resultSub" style="color:var(--muted); font-size:14.5px;"></p>
+      <div class="result-actions">
+        <button class="btn btn-primary" id="copyResultBtn">📋 คัดลอกผลคะแนนส่งแชท</button>
+        <button class="btn btn-outline" id="retryBtn">🔄 ทำแบบทดสอบอีกครั้ง</button>
+      </div>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="btn btn-sm btn-primary" id="filterAll">ทั้งหมด (15)</button>
+      <button class="btn btn-sm btn-ghost" id="filterWrong">เฉพาะข้อที่ผิด (0)</button>
+    </div>
+    <div id="reviewList"></div>
+  </section>
+</div>
+
+<!-- Reference Modal -->
+<div class="modal-backdrop" id="refModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Subgroup Meaning (ตารางอ้างอิงฉบับอัปเดต)</h2>
+      <button class="btn btn-ghost btn-sm" id="closeRefBtn">✕ ปิด</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Subgroup</th>
+          <th>Max items/order</th>
+          <th>Max weight/order (กก.)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>ANOM</td><td>9999</td><td>n/a</td></tr>
+        <tr><td>2</td><td>EXPR</td><td>9999</td><td>n/a</td></tr>
+        <tr><td>3</td><td>MONO</td><td>1</td><td>3</td></tr>
+        <tr><td>4</td><td>STAN</td><td>10</td><td>3</td></tr>
+        <tr><td>5</td><td>MBUL</td><td>1</td><td>10</td></tr>
+        <tr><td>6</td><td>STBU</td><td>10</td><td>10</td></tr>
+        <tr><td>7</td><td>BULK</td><td>10</td><td>20</td></tr>
+        <tr><td>8</td><td>OTHE</td><td>9999</td><td>20</td></tr>
+        <tr><td>9</td><td>MCEL</td><td>1</td><td>n/a</td></tr>
+        <tr><td>10</td><td>BCEL</td><td>10</td><td>n/a</td></tr>
+        <tr><td>11</td><td>OCEL</td><td>9999</td><td>n/a</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">
+      <strong>ทำความเข้าใจค่า n/a เพื่อไม่ให้สับสน:</strong>
+      <ul>
+        <li><strong>ANOM และ EXPR:</strong> เป็น Subgroup พิเศษ (เช่น ออเดอร์ผิดปกติ / ออเดอร์ด่วนพิเศษ) จึงไม่ได้กำหนดเกณฑ์จำนวนชิ้นและน้ำหนัก</li>
+        <li><strong>MCEL, BCEL, OCEL:</strong> ค่า n/a หมายถึง <strong>น้ำหนักเกินกว่าเพดานสูงสุด 20 กก.</strong> ที่ตารางกำหนดไว้ โดยแยกตามจำนวนชิ้น (1 ชิ้น = MCEL, สูงสุด 10 ชิ้น = BCEL, มากกว่า 10 ชิ้น = OCEL)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">คัดลอกผลคะแนนแล้ว!</div>
+
+<script>
+const QUESTIONS = [
+  {
+    category: "กลุ่ม 1 ชิ้น (MONO / MBUL / MCEL)",
+    q: "ออเดอร์ที่มีสินค้า 1 ชิ้น น้ำหนักรวม 3 กิโลกรัมพอดี จะถูกจัดอยู่ใน Subgroup ใดตามตารางฉบับแก้ไขใหม่?",
+    options: [
+      { text: "MONO", ok: true, why: "ถูกต้อง! ตามตารางฉบับใหม่ MONO รับสินค้า 1 ชิ้น และน้ำหนักสูงสุดไม่เกิน 3 กิโลกรัมพอดี" },
+      { text: "MBUL", ok: false, why: "MBUL ใช้สำหรับสินค้า 1 ชิ้นที่น้ำหนักเกิน 3 กิโลกรัมขึ้นไป (ไม่เกิน 10 กก.)" },
+      { text: "STAN", ok: false, why: "STAN รองรับได้ถึง 10 ชิ้น (ไม่เกิน 3 กก.) แต่กรณีสินค้า 1 ชิ้นจะเข้ากลุ่ม MONO ก่อน" },
+      { text: "MCEL", ok: false, why: "MCEL ใช้สำหรับสินค้า 1 ชิ้นที่น้ำหนักเกิน 20 กิโลกรัม" }
+    ],
+    hint: "ดูแถวที่ Max items/order = 1 และ Max weight/order = 3"
+  },
+  {
+    category: "กลุ่ม 1 ชิ้น (MONO / MBUL / MCEL)",
+    q: "หากมีออเดอร์สินค้า 1 ชิ้น น้ำหนัก 3.5 กิโลกรัม ออเดอร์นี้จะต้องถูกจัดอยู่ใน Subgroup ใด?",
+    options: [
+      { text: "MBUL", ok: true, why: "ถูกต้อง! น้ำหนัก 3.5 กก. เกินเพดานของ MONO (3 กก.) แต่ไม่เกิน 10 กก. จึงจัดเป็น MBUL" },
+      { text: "MONO", ok: false, why: "MONO รับน้ำหนักได้สูงสุด 3 กก. เท่านั้น (3.5 กก. เกินเกณฑ์)" },
+      { text: "STBU", ok: false, why: "STBU มีเกณฑ์น้ำหนักไม่เกิน 10 กก. แต่ใช้สำหรับกลุ่มหลายชิ้น (สูงสุด 10 ชิ้น) ไม่ใช่กลุ่ม 1 ชิ้น" },
+      { text: "MCEL", ok: false, why: "MCEL ใช้เมื่อน้ำหนักเกิน 20 กก." }
+    ],
+    hint: "3.5 กก. เกิน 3 กก. แล้ว แต่ยังไม่เกิน 10 กก. สำหรับสินค้า 1 ชิ้น"
+  },
+  {
+    category: "ความหมายค่า n/a (กลุ่ม CEL)",
+    q: "ออเดอร์สินค้า 1 ชิ้นที่มีน้ำหนัก 21 กิโลกรัม ถูกจัดเป็นกลุ่ม 'MCEL' เพราะเหตุใด?",
+    options: [
+      { text: "เพราะมีสินค้า 1 ชิ้น และน้ำหนักเกินเพดานสูงสุด 20 กิโลกรัมที่กำหนดไว้", ok: true, why: "ถูกต้อง! กลุ่มที่ลงท้ายด้วย CEL (n/a) ใช้รองรับออเดอร์ที่น้ำหนักเกินเพดาน 20 กก. และ MCEL คือสำหรับ 1 ชิ้น" },
+      { text: "เพราะ MCEL เป็น Subgroup พิเศษที่ไม่สนใจน้ำหนักเหมือน EXPR", ok: false, why: "กลุ่มพิเศษคือ ANOM และ EXPR ส่วน MCEL คือกลุ่มที่น้ำหนักเกินเกณฑ์ปกติ (20 กก.)" },
+      { text: "เพราะ MCEL รองรับน้ำหนักตั้งแต่ 10 กิโลกรัมขึ้นไป", ok: false, why: "เกณฑ์ n/a ของกลุ่ม CEL เริ่มเมื่อน้ำหนักเกินเพดานสูงสุดในตารางคือ 20 กก." },
+      { text: "เพราะระบบไม่ได้บันทึกน้ำหนักของสินค้าชิ้นนี้ไว้ในฐานข้อมูล", ok: false, why: "ค่า n/a ในกลุ่ม CEL ไม่ได้แปลว่าไม่มีข้อมูล แต่แปลว่าน้ำหนักเกินกว่าเพดานที่กำหนดไว้" }
+    ],
+    hint: "ทบทวนความหมายของค่า n/a ในกลุ่มที่ลงท้ายด้วย CEL"
+  },
+  {
+    category: "เปรียบเทียบกลุ่มที่คล้ายกัน",
+    q: "ข้อใดคือความแตกต่างหลักระหว่าง 'MONO' และ 'STAN' ตามตารางฉบับใหม่?",
+    options: [
+      { text: "จำนวนสินค้าสูงสุดต่อออเดอร์ต่างกัน แต่รับน้ำหนักได้สูงสุด 3 กิโลกรัมเท่ากัน", ok: true, why: "ถูกต้อง! ทั้ง MONO และ STAN รับน้ำหนักได้สูงสุด 3 กก. เท่ากัน แต่ MONO จำกัด 1 ชิ้น ส่วน STAN สูงสุด 10 ชิ้น" },
+      { text: "น้ำหนักสูงสุดต่อออเดอร์ต่างกัน แต่จำกัดจำนวนสินค้า 1 ชิ้นเท่ากัน", ok: false, why: "สลับกันครับ ทั้งสองกลุ่มน้ำหนักสูงสุด 3 กก. เท่ากัน แต่จำนวนชิ้นต่างกัน (1 vs 10)" },
+      { text: "MONO เป็นกลุ่มสินค้าหนัก ส่วน STAN เป็นกลุ่มสินค้าเบา", ok: false, why: "ทั้งสองกลุ่มมีเพดานน้ำหนัก 3 กก. เท่ากัน" },
+      { text: "STAN ไม่จำกัดจำนวนชิ้น ส่วน MONO จำกัด 1 ชิ้น", ok: false, why: "STAN จำกัดสูงสุด 10 ชิ้นต่อออเดอร์ (กลุ่มที่ไม่จำกัดชิ้นคือ 9999)" }
+    ],
+    hint: "เทียบคอลัมน์ Max items/order และ Max weight/order ของแถวที่ 3 และ 4"
+  },
+  {
+    category: "กลุ่มไม่เกิน 10 ชิ้น",
+    q: "ออเดอร์ที่มีสินค้า 6 ชิ้น น้ำหนักรวม 8 กิโลกรัม ควรจัดอยู่ใน Subgroup ใด?",
+    options: [
+      { text: "STBU", ok: true, why: "ถูกต้อง! สินค้า 6 ชิ้น (ไม่เกิน 10 ชิ้น) และน้ำหนัก 8 กก. เกิน STAN (3 กก.) แต่ไม่เกิน 10 กก. จึงเป็น STBU" },
+      { text: "STAN", ok: false, why: "STAN รับน้ำหนักได้สูงสุดเพียง 3 กก." },
+      { text: "MBUL", ok: false, why: "MBUL รับน้ำหนักได้ 10 กก. แต่จำกัดเพียง 1 ชิ้นต่อออเดอร์" },
+      { text: "BULK", ok: false, why: "BULK ใช้สำหรับออเดอร์ไม่เกิน 10 ชิ้นที่น้ำหนักเกิน 10 กก. ถึง 20 กก." }
+    ],
+    hint: "สินค้า 2–10 ชิ้น และน้ำหนักอยู่ระหว่าง 3.01–10 กก."
+  },
+  {
+    category: "กลุ่มไม่เกิน 10 ชิ้น",
+    q: "หากมีออเดอร์สินค้า 8 ชิ้น น้ำหนักรวม 15 กิโลกรัม ออเดอร์นี้จะถูกจัดอยู่ใน Subgroup ใด?",
+    options: [
+      { text: "BULK", ok: true, why: "ถูกต้อง! สินค้า 8 ชิ้น (ไม่เกิน 10 ชิ้น) และน้ำหนัก 15 กก. (เกิน 10 กก. แต่ไม่เกิน 20 กก.) คือ BULK" },
+      { text: "STBU", ok: false, why: "STBU รับน้ำหนักได้สูงสุด 10 กก. เท่านั้น" },
+      { text: "OTHE", ok: false, why: "OTHE รับน้ำหนักได้ถึง 20 กก. แต่ใช้สำหรับออเดอร์ที่มีสินค้ามากกว่า 10 ชิ้น (สูงสุด 9999 ชิ้น)" },
+      { text: "BCEL", ok: false, why: "BCEL ใช้สำหรับออเดอร์ไม่เกิน 10 ชิ้นที่น้ำหนักเกิน 20 กก." }
+    ],
+    hint: "สินค้าไม่เกิน 10 ชิ้น แต่น้ำหนักอยู่ช่วงมากกว่า 10 ถึง 20 กก."
+  },
+  {
+    category: "กลุ่มไม่เกิน 10 ชิ้น & ค่า n/a",
+    q: "ออเดอร์สินค้า 4 ชิ้น น้ำหนักรวม 20.5 กิโลกรัม จะถูกจัดเข้า Subgroup ใด?",
+    options: [
+      { text: "BCEL", ok: true, why: "ถูกต้อง! สินค้า 4 ชิ้น (ไม่เกิน 10 ชิ้น) และน้ำหนัก 20.5 กก. เกินเพดาน 20 กก. จึงเข้ากลุ่ม BCEL" },
+      { text: "BULK", ok: false, why: "BULK รับน้ำหนักได้สูงสุด 20 กก. พอดี (20.5 กก. เกินเกณฑ์)" },
+      { text: "MCEL", ok: false, why: "MCEL จำกัดเพียง 1 ชิ้นต่อออเดอร์ แต่ออเดอร์นี้มี 4 ชิ้น" },
+      { text: "OCEL", ok: false, why: "OCEL ใช้สำหรับออเดอร์ที่น้ำหนักเกิน 20 กก. และมีสินค้ามากกว่า 10 ชิ้น" }
+    ],
+    hint: "น้ำหนักเกิน 20 กก. แล้ว ให้มองกลุ่ม CEL ที่มี Max items/order = 10"
+  },
+  {
+    category: "กลุ่มมากกว่า 10 ชิ้น (OTHE / OCEL)",
+    q: "ออเดอร์ที่มีสินค้าจำนวน 15 ชิ้น น้ำหนักรวม 12 กิโลกรัม ควรจัดอยู่ใน Subgroup ใด?",
+    options: [
+      { text: "OTHE", ok: true, why: "ถูกต้อง! จำนวนสินค้า 15 ชิ้นเกินเพดาน 10 ชิ้นของกลุ่ม BULK และน้ำหนัก 12 กก. ยังไม่เกิน 20 กก. จึงเข้า OTHE" },
+      { text: "BULK", ok: false, why: "BULK จำกัดจำนวนสินค้าสูงสุดเพียง 10 ชิ้นต่อออเดอร์" },
+      { text: "OCEL", ok: false, why: "OCEL ใช้เมื่อน้ำหนักเกิน 20 กก. แต่ออเดอร์นี้หนักเพียง 12 กก." },
+      { text: "STBU", ok: false, why: "STBU จำกัดสูงสุด 10 ชิ้น และน้ำหนักไม่เกิน 10 กก." }
+    ],
+    hint: "จำนวนสินค้าเกิน 10 ชิ้น แต่น้ำหนักยังไม่เกิน 20 กก."
+  },
+  {
+    category: "กลุ่มมากกว่า 10 ชิ้น (OTHE / OCEL)",
+    q: "หากออเดอร์หนึ่งมีสินค้าจำนวน 12 ชิ้น และมีน้ำหนักรวม 25 กิโลกรัม จะต้องจัดอยู่ใน Subgroup ใด?",
+    options: [
+      { text: "OCEL", ok: true, why: "ถูกต้อง! สินค้า 12 ชิ้น (เกิน 10 ชิ้น → 9999) และน้ำหนัก 25 กก. (เกิน 20 กก. → n/a) จึงจัดเป็น OCEL" },
+      { text: "BCEL", ok: false, why: "BCEL จำกัดจำนวนสินค้าสูงสุดเพียง 10 ชิ้น แต่ออเดอร์นี้มี 12 ชิ้น" },
+      { text: "OTHE", ok: false, why: "OTHE รับน้ำหนักได้สูงสุด 20 กก. เท่านั้น (25 กก. เกินเกณฑ์)" },
+      { text: "ANOM", ok: false, why: "ANOM เป็นกลุ่มพิเศษสำหรับออเดอร์ผิดปกติ ไม่ใช่กลุ่มจัดแบ่งตามน้ำหนักเกินปกติ" }
+    ],
+    hint: "เกินทั้ง 10 ชิ้น และเกินทั้ง 20 กก."
+  },
+  {
+    category: "เปรียบเทียบค่า n/a",
+    q: "ค่า 'n/a' ในช่อง Max weight/order ของกลุ่ม 'ANOM และ EXPR' แตกต่างจากกลุ่ม 'MCEL, BCEL และ OCEL' อย่างไร?",
+    options: [
+      { text: "ANOM/EXPR เป็นกลุ่มพิเศษจึงไม่กำหนดเกณฑ์น้ำหนัก ส่วนกลุ่ม CEL หมายถึงน้ำหนักเกินกว่าเพดาน 20 กิโลกรัม", ok: true, why: "ถูกต้อง! นี่คือจุดสำคัญที่ทำให้ไม่สับสนระหว่างกลุ่มพิเศษกับกลุ่มสินค้าหนักเกินเกณฑ์" },
+      { text: "ไม่มีความแตกต่างกัน ทั้ง 5 กลุ่มใช้สำหรับสินค้าน้ำหนักเกิน 20 กิโลกรัมเหมือนกัน", ok: false, why: "ต่างกันครับ ออเดอร์ EXPR หรือ ANOM อาจมีน้ำหนักแค่ 1 กก. ก็ได้ เพราะเป็นกลุ่มพิเศษ" },
+      { text: "ANOM/EXPR หมายถึงน้ำหนักเกิน 20 กิโลกรัม ส่วนกลุ่ม CEL หมายถึงไม่กำหนดเกณฑ์", ok: false, why: "สลับความหมายกันครับ กลุ่ม CEL ต่างหากที่หมายถึงน้ำหนักเกินเพดาน 20 กก." },
+      { text: "ANOM/EXPR จำกัดน้ำหนักที่ 10 กิโลกรัม ส่วนกลุ่ม CEL ไม่จำกัดน้ำหนัก", ok: false, why: "ANOM และ EXPR ไม่ได้กำหนดเพดานน้ำหนักที่ 10 กก." }
+    ],
+    hint: "นึกถึงคำอธิบายระหว่าง 'กลุ่มพิเศษ' กับ 'น้ำหนักเกินกำหนด'"
+  },
+  {
+    category: "เรียงลำดับกลุ่มที่คล้ายกัน",
+    q: "ข้อใดเรียงลำดับ Subgroup สำหรับออเดอร์ที่มีสินค้า 1 ชิ้น จากเกณฑ์น้ำหนักน้อยไปหามากได้ถูกต้อง?",
+    options: [
+      { text: "MONO → MBUL → MCEL", ok: true, why: "ถูกต้อง! MONO (≤ 3 กก.) → MBUL (≤ 10 กก.) → MCEL (> 20 กก. / n/a)" },
+      { text: "MONO → MCEL → MBUL", ok: false, why: "MCEL คือกลุ่มน้ำหนักเกินเพดานสูงสุด ต้องอยู่ลำดับสุดท้าย" },
+      { text: "STAN → MBUL → MCEL", ok: false, why: "STAN เป็นกลุ่มสูงสุด 10 ชิ้น ไม่ใช่กลุ่มที่จำกัด 1 ชิ้น" },
+      { text: "MBUL → MONO → MCEL", ok: false, why: "MONO รับน้ำหนักสูงสุด 3 กก. ซึ่งน้อยกว่า MBUL (10 กก.)" }
+    ],
+    hint: "กลุ่มสินค้า 1 ชิ้นทั้งหมดขึ้นต้นด้วยตัว M"
+  },
+  {
+    category: "จัดหมวดหมู่ตามจำนวนชิ้น",
+    q: "ชุด Subgroup ใดที่กำหนดจำนวนสินค้าสูงสุดต่อออเดอร์ไว้ที่ 10 ชิ้นเท่ากันทั้งหมด แต่แยกกันตามช่วงน้ำหนัก?",
+    options: [
+      { text: "STAN, STBU, BULK, BCEL", ok: true, why: "ถูกต้อง! STAN (≤3 กก.), STBU (≤10 กก.), BULK (≤20 กก.) และ BCEL (>20 กก.) ล้วนมี Max items/order = 10" },
+      { text: "MONO, STAN, STBU, BULK", ok: false, why: "MONO จำกัดเพียง 1 ชิ้น ไม่ใช่ 10 ชิ้น" },
+      { text: "STAN, STBU, BULK, OTHE", ok: false, why: "OTHE มี Max items/order = 9999 ไม่ใช่ 10" },
+      { text: "MBUL, STBU, BULK, BCEL", ok: false, why: "MBUL จำกัดเพียง 1 ชิ้น ไม่ใช่ 10 ชิ้น" }
+    ],
+    hint: "ไล่ดูในตารางทุกแถวที่ช่อง Max items/order เป็นเลข 10 (มีทั้งหมด 4 กลุ่ม)"
+  },
+  {
+    category: "กรณีชวนสับสน (ชิ้นเยอะแต่น้ำหนักเบา)",
+    q: "ออเดอร์ที่มีสินค้าขนาดเล็กจำนวน 11 ชิ้น น้ำหนักรวมเพียง 2 กิโลกรัม จะต้องถูกจัดเข้า Subgroup ใด?",
+    options: [
+      { text: "OTHE", ok: true, why: "ถูกต้อง! แม้น้ำหนักจะเบาเพียง 2 กก. แต่จำนวนสินค้า 11 ชิ้นเกินเพดาน 10 ชิ้นของ STAN แล้ว จึงต้องขยับไปที่ OTHE (9999 ชิ้น, ≤ 20 กก.)" },
+      { text: "STAN", ok: false, why: "STAN จำกัดจำนวนสินค้าสูงสุดเพียง 10 ชิ้น แม้ 2 กก. จะไม่เกินเกณฑ์น้ำหนักก็ตาม" },
+      { text: "BULK", ok: false, why: "BULK ก็จำกัดจำนวนสินค้าสูงสุดที่ 10 ชิ้นเช่นกัน" },
+      { text: "OCEL", ok: false, why: "OCEL ใช้เมื่อน้ำหนักเกิน 20 กก. แต่ออเดอร์นี้หนักเพียง 2 กก." }
+    ],
+    hint: "เช็คทั้งจำนวนชิ้นและน้ำหนัก! 11 ชิ้นเกิน 10 ชิ้นแล้ว"
+  },
+  {
+    category: "Subgroup พิเศษ",
+    q: "หากมีออเดอร์ด่วนพิเศษ (Express) ที่มีสินค้า 2 ชิ้น น้ำหนักรวม 1.5 กิโลกรัม เหตุใดจึงจัดอยู่ในกลุ่ม 'EXPR' แทนที่จะเป็น 'STAN'?",
+    options: [
+      { text: "เพราะ EXPR เป็น Subgroup พิเศษที่แยกออกมาโดยไม่จำกัดเกณฑ์จำนวนชิ้นและน้ำหนัก", ok: true, why: "ถูกต้อง! ออเดอร์ที่เป็นเงื่อนไขพิเศษอย่าง EXPR หรือ ANOM จะถูกจัดเข้ากลุ่มพิเศษทันทีโดยไม่ติดเพดานของกลุ่มปกติ" },
+      { text: "เพราะ STAN ใช้ได้เฉพาะออเดอร์ที่มีน้ำหนักมากกว่า 2 กิโลกรัมขึ้นไป", ok: false, why: "STAN รับน้ำหนักได้ตั้งแต่เริ่มจนถึง 3 กก. ไม่ได้กำหนดขั้นต่ำที่ 2 กก." },
+      { text: "เพราะ EXPR ใช้เฉพาะออเดอร์ที่มีสินค้าไม่เกิน 5 ชิ้นเท่านั้น", ok: false, why: "EXPR ระบุ Max items/order = 9999 และ Max weight = n/a" },
+      { text: "เพราะสินค้า 2 ชิ้นไม่สามารถจัดเข้ากลุ่ม STAN ได้", ok: false, why: "STAN รองรับได้สูงสุด 10 ชิ้น" }
+    ],
+    hint: "ทบทวนสถานะของกลุ่ม EXPR และ ANOM"
+  },
+  {
+    category: "ประยุกต์กลุ่ม CEL ทั้ง 3 กลุ่ม",
+    q: "หากมีออเดอร์ที่น้ำหนักเกิน 20 กิโลกรัมทั้งหมด 3 ออเดอร์ โดยมีจำนวนสินค้า 1 ชิ้น, 5 ชิ้น และ 15 ชิ้นตามลำดับ จะต้องจัดเข้ากลุ่มใดตามลำดับ?",
+    options: [
+      { text: "MCEL, BCEL, OCEL", ok: true, why: "ถูกต้อง! เกิน 20 กก. ทั้งหมดจึงเป็นกลุ่ม CEL: 1 ชิ้น = MCEL, 5 ชิ้น (≤10) = BCEL, 15 ชิ้น (>10) = OCEL" },
+      { text: "MONO, BULK, OTHE", ok: false, why: "กลุ่มเหล่านี้ใช้เมื่อน้ำหนักไม่เกิน 20 กก. เท่านั้น" },
+      { text: "MBUL, BCEL, OCEL", ok: false, why: "MBUL รับน้ำหนักได้สูงสุด 10 กก. เท่านั้น ไม่ใช่เกิน 20 กก." },
+      { text: "MCEL, OCEL, BCEL", ok: false, why: "สลับลำดับสองตัวหลังครับ 5 ชิ้นต้องเป็น BCEL (≤10) และ 15 ชิ้นเป็น OCEL (9999)" }
+    ],
+    hint: "ทุกออเดอร์หนักเกิน 20 กก. ให้เรียงกลุ่ม CEL ตามจำนวนชิ้น 1 → 10 → 9999"
+  }
+];
+
+let quizList = [];
+let currentIdx = 0;
+let score = 0;
+let historyLog = [];
+let answered = false;
+
+const el = id => document.getElementById(id);
+const shuffle = arr => {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+
+// Modal handlers
+el("openRefBtn").onclick = () => el("refModal").classList.add("open");
+el("closeRefBtn").onclick = () => el("refModal").classList.remove("open");
+el("refModal").onclick = e => { if (e.target === el("refModal")) el("refModal").classList.remove("open"); };
+
+function startQuiz() {
+  const shouldShuffle = el("shuffleToggle").checked;
+  quizList = (shouldShuffle ? shuffle(QUESTIONS) : QUESTIONS.slice()).map(item => ({
+    ...item,
+    shuffledOptions: shuffle(item.options)
+  }));
+  currentIdx = 0;
+  score = 0;
+  historyLog = [];
+  el("startScreen").classList.add("hidden");
+  el("resultScreen").classList.add("hidden");
+  el("quizScreen").classList.remove("hidden");
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answered = false;
+  const item = quizList[currentIdx];
+  el("qCounter").textContent = `ข้อที่ ${currentIdx + 1} / ${quizList.length}`;
+  el("scoreLive").textContent = `คะแนนสะสม: ${score}`;
+  el("progressFill").style.width = `${((currentIdx) / quizList.length) * 100}%`;
+  el("qCategory").textContent = item.category;
+  el("qText").textContent = item.q;
+  el("hintBox").classList.add("hidden");
+  el("hintBox").textContent = "💡 คำใบ้: " + item.hint;
+  el("hintBtn").classList.remove("hidden");
+  el("feedbackBox").classList.add("hidden");
+  el("nextBtn").classList.add("hidden");
+  el("nextBtn").textContent = currentIdx === quizList.length - 1 ? "ดูสรุปผลคะแนน →" : "ข้อถัดไป →";
+
+  const box = el("optionsBox");
+  box.innerHTML = "";
+  const letters = ["A", "B", "C", "D"];
+  item.shuffledOptions.forEach((opt, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.innerHTML = `<span class="opt-letter">${letters[idx]}</span><span>${opt.text}</span>`;
+    btn.onclick = () => selectAnswer(idx);
+    box.appendChild(btn);
+  });
+}
+
+function selectAnswer(chosenIdx) {
+  if (answered) return;
+  answered = true;
+  const item = quizList[currentIdx];
+  const chosen = item.shuffledOptions[chosenIdx];
+  const correctOpt = item.shuffledOptions.find(o => o.ok);
+  const btns = el("optionsBox").querySelectorAll(".option-btn");
+
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (item.shuffledOptions[i].ok) b.classList.add("correct");
+    else if (i === chosenIdx && !chosen.ok) b.classList.add("wrong");
+  });
+
+  if (chosen.ok) score++;
+  el("scoreLive").textContent = `คะแนนสะสม: ${score}`;
+  el("progressFill").style.width = `${((currentIdx + 1) / quizList.length) * 100}%`;
+
+  const fb = el("feedbackBox");
+  fb.classList.remove("hidden", "ok", "err");
+  fb.classList.add(chosen.ok ? "ok" : "err");
+  el("feedbackTitle").textContent = chosen.ok ? "✅ ถูกต้อง!" : "❌ ยังไม่ถูกครับ";
+  el("feedbackReason").textContent = chosen.ok
+    ? chosen.why
+    : `${chosen.why} — คำตอบที่ถูกคือ "${correctOpt.text}" (${correctOpt.why})`;
+
+  el("hintBtn").classList.add("hidden");
+  el("nextBtn").classList.remove("hidden");
+
+  historyLog.push({
+    q: item.q,
+    chosenText: chosen.text,
+    correctText: correctOpt.text,
+    isCorrect: chosen.ok,
+    reason: correctOpt.why
+  });
+}
+
+el("hintBtn").onclick = () => {
+  el("hintBox").classList.remove("hidden");
+  el("hintBtn").classList.add("hidden");
+};
+
+el("nextBtn").onclick = () => {
+  if (currentIdx < quizList.length - 1) {
+    currentIdx++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+};
+
+function showResult() {
+  el("quizScreen").classList.add("hidden");
+  el("resultScreen").classList.remove("hidden");
+  const total = quizList.length;
+  const pct = Math.round((score / total) * 100);
+  const name = el("userName").value.trim();
+
+  el("finalScore").textContent = `${score}/${total}`;
+  el("finalPct").textContent = `${pct}%`;
+
+  let msg = "ยอดเยี่ยมมาก! เข้าใจเกณฑ์ Subgroup ได้แม่นยำแล้ว";
+  if (pct < 60) msg = "ลองทบทวนตารางอ้างอิงและข้อที่ตอบผิด แล้วลองทำใหม่อีกครั้งนะครับ";
+  else if (pct < 85) msg = "ทำได้ดีเลยครับ! เก็บรายละเอียดข้อที่พลาดอีกนิดจะเป๊ะ 100%";
+  el("resultHeading").textContent = name ? `สรุปผลคะแนนของ ${name}` : "สรุปผลคะแนน";
+  el("resultSub").textContent = msg;
+
+  const wrongCount = historyLog.filter(h => !h.isCorrect).length;
+  el("filterAll").textContent = `ทั้งหมด (${total})`;
+  el("filterWrong").textContent = `เฉพาะข้อที่ผิด (${wrongCount})`;
+  renderReview("all");
+}
+
+function renderReview(mode) {
+  const list = el("reviewList");
+  list.innerHTML = "";
+  el("filterAll").className = `btn btn-sm ${mode === "all" ? "btn-primary" : "btn-ghost"}`;
+  el("filterWrong").className = `btn btn-sm ${mode === "wrong" ? "btn-primary" : "btn-ghost"}`;
+
+  const items = mode === "wrong" ? historyLog.filter(h => !h.isCorrect) : historyLog;
+  if (items.length === 0) {
+    list.innerHTML = `<p style="text-align:center; color:var(--success); font-weight:700; padding:18px;">🎉 ไม่มีข้อที่ตอบผิดเลย เก่งมากครับ!</p>`;
+    return;
+  }
+  items.forEach((h, i) => {
+    const div = document.createElement("div");
+    div.className = `review-item ${h.isCorrect ? "r-ok" : "r-err"}`;
+    div.innerHTML = `
+      <div class="review-q">${i + 1}. ${h.q}</div>
+      <div class="review-ans">คำตอบที่เลือก: <strong>${h.chosenText}</strong> ${h.isCorrect ? "✅" : `❌ (เฉลย: <strong>${h.correctText}</strong>)`}</div>
+      <div class="review-exp">${h.reason}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+el("filterAll").onclick = () => renderReview("all");
+el("filterWrong").onclick = () => renderReview("wrong");
+el("startBtn").onclick = startQuiz;
+el("retryBtn").onclick = () => {
+  el("resultScreen").classList.add("hidden");
+  el("startScreen").classList.remove("hidden");
+};
+
+el("copyResultBtn").onclick = () => {
+  const name = el("userName").value.trim() || "ผู้ทำแบบทดสอบ";
+  const pct = Math.round((score / quizList.length) * 100);
+  const text = `📊 ผลแบบทดสอบ Subgroup Meaning\nผู้ทำ: ${name}\nคะแนน: ${score}/${quizList.length} (${pct}%)`;
+  navigator.clipboard.writeText(text).then(() => {
+    const t = el("toast");
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2000);
+  }).catch(() => alert(text));
+};
+</script>
+</body>
+</html>
